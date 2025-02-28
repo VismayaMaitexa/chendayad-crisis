@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Donation Requests</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>My Donation Requests</h2>
+
+    {% if donation_requests %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Admin Approval</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in donation_requests %}
+                    <tr>
+                        <td>{{ request.name }}</td>
+                        <td>{{ request.category }}</td>
+                        <td>{{ request.quantity }}</td>
+                        <td>
+                            {% if request.adminapprove %}
+                                <span class="text-success">Approved</span>
+                            {% elif request.adminapprove is None %}
+                                <span class="text-warning">Pending</span>
+                            {% else %}
+                                <span class="text-danger">Rejected</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ request.created_at|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No donation requests found.</p>
+    {% endif %}
+    
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Alert Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: none;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .email-body {
+            padding: 20px;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .email-body h2 {
+            color: #d32f2f;
+            margin-bottom: 10px;
+        }
+        .email-body p {
+            margin: 0 0 20px;
+        }
+        .cta-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #d32f2f;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .cta-button:hover {
+            background-color: #b71c1c;
+        }
+        .email-footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #666666;
+        }
+        .email-footer a {
+            color: #d32f2f;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Disaster Alert Notification</h1>
+        </div>
+        
+        <div class="email-body">
+            <h2>Urgent: Disaster Alert in Your Area</h2>
+            <p>Dear Volunteer,</p>
+            <p>We are issuing this urgent notification regarding a <strong>Disaster </strong> that has been reported in your area. Please follow the necessary safety guidelines and take immediate action to ensure your safety and that of your loved ones.</p>
+            <p><strong>Message:</strong> {{report.message}}</p>
+            <p><strong>Location Affected:</strong> {{report.location}}</p>
+            <p><strong>Affected People:</strong> {{report.affectedpeoples}}</p>
+
+            <a href="[Safety Guide Link]" class="cta-button">View Safety Guidelines</a>
+
+            <p>If you are in immediate danger, please contact local authorities and follow their instructions. Stay tuned to emergency broadcasts for the latest updates.</p>
+        </div>
+        
+        <div class="email-footer">
+            <p>This is an automated notification. If you have any questions, please visit our <a href="[Support Link]">support page</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

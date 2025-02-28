@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Dashboard</title>
+
+    <style>
+        /* Universal Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f0f4f8;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #4a90e2;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            padding-top: 50px;
+            transition: width 0.3s ease;
+            padding-left: 20px;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-header h2 {
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .sidebar-menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            transition: background-color 0.3s, padding-left 0.3s;
+            padding: 10px 0;
+        }
+
+        .sidebar-menu li a:hover {
+            background-color: #76b4ff;
+            padding-left: 10px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 250px;
+            flex-grow: 1;
+            background-color: #f0f4f8;
+            padding: 20px;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            border-radius: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-left h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-right span {
+            margin-right: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .navbar-right img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Card Grid Styles */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three cards per row */
+            gap: 20px; /* Equal spacing between cards */
+            margin-top: 30px;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.3s ease, background-color 0.3s;
+            border-left: 6px solid #ff6b6b;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background-color: #f0f9ff;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #2e86de;
+            margin-bottom: 8px;
+        }
+
+        /* Container Spacing */
+        .container {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .container h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr); /* Two cards per row on medium screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+            }
+
+            .navbar-left h1 {
+                font-size: 20px;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr; /* One card per row on small screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 0;
+                visibility: hidden;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .navbar-left h1 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Volunteer Dashboard</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="{% url 'job' %}">Job</a></li>
+            <li><a href="{% url 'volunteercrisis' %}">Crisis</a></li>
+            <!-- <li><a href="{% url 'volunteercrisisreporting' %}">CrisisReporting</a></li> -->
+            <li><a href="{% url 'home' %}">Log Out</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <button class="toggle-btn">&#9776;</button>
+                <h1>Dashboard</h1>
+            </div>
+            <div class="navbar-right">
+                <div class="user-info">
+                    <span><a href="{% url 'volunteerprofile' %}" style="color: #2e86de;">Profile</a></span>
+                    
+                </div>
+            </div>
+        </nav>
+
+        <!-- Container for Donation Cards -->
+        <div class="container mt-5">
+            <h1 style="margin-top: 20px;">Donation Details</h1>
+            <div class="cards-container">
+                <!-- Example of a card (Loop through the model instances in Django to create multiple cards) -->
+            {% for item in objects %}
+
+                <div class="card">
+                    <h3>Item Name: {{ item.item_name }}</h3>
+                    <p><strong>Category:</strong> {{ item.category }}</p>
+                    <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                    <p><strong>Received Quantity:</strong> {{ item.recieved_quantity }}</p>
+                    <a href="{% url 'volunteerdonation' item.id %}"><button  style="padding: 6px; background-color: rgb(235, 204, 52); border: none;border-radius: 5px;">Donate</button></a>
+                </div>
+            {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Sidebar Toggle -->
+    <script>
+        document.querySelector('.toggle-btn').addEventListener('click', function() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.width = sidebar.style.width === '0px' ? '250px' : '0px';
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Font Awesome Icons -->
+    <style>
+    
+        body, h1, h2, p, ul, li {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding-top: 20px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #34495e;
+        }
+
+        
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            color: #02060b;
+        }
+
+        .header .user-info {
+            font-size: 1em;
+            color: #34495e;
+        }
+
+        
+        .dashboard-cards {
+            display: flex;
+            justify-content: space-between; 
+            gap: 20px;
+            flex-wrap: wrap;  
+            margin-top: 30px;
+        }
+
+        
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #fff;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+    
+        .card.add-card {
+            background-color: #3498db;
+        }
+
+        .card.view-card {
+            background-color: #2ecc71;
+        }
+
+        .card.approve-card {
+            background-color: #e67e22;
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.1em;
+            color: #ecf0f1;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 30px;
+        }
+
+        
+        a {
+            text-decoration: none;
+        }
+
+        
+        @media (max-width: 768px) {
+            .dashboard-cards {
+                flex-direction: column; 
+                align-items: center; 
+            }
+
+            .card {
+                flex: 1 1 100%;
+                margin-bottom: 20px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="sidebar">
+        <ul>
+            <li><a href="#"><b>Dashboard</b></a></li>
+            <li><a href="{% url 'users' %}">Users</a></li>
+            <li><a href="{% url 'volunteers' %}">Volunteers</a></li>
+            <li><a href="{% url 'crisisreports' %}">Crisis Reports</a></li>
+            <li><a href="{% url 'home' %}">Logout</a></li>
+        </ul>    
+    </div>
+
+
+    <div class="main-content">
+        
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+            <div class="user-info">
+                <p>Welcome, Admin</p>
+            </div>
+        </div>
+
+
+    
+    </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crisis Reporting</title>
+    <style>
+        
+        body, h1, label, input, select, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            color: #4CAF50;
+        }
+
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        
+        label {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            display: block;
+            color: #555;
+        }
+
+        input[type="text"], input[type="file"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            color: #555;
+            resize: vertical;
+        }
+
+    
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007BFF;
+            font-size: 1.1em;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Crisis Reporting</h1>
+
+    <div class="form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        
+        
+            <label for="id_message">Message:</label>
+            <input type="text" name="message" id="id_message" maxlength="50" value="{{ form.message.value|default:'' }}" required>
+        
+            
+            <label for="id_location">Location:</label>
+            <input type="text" name="location" id="id_location" maxlength="20" value="{{ form.location.value|default:'' }}" required>
+        
+        
+            <label for="id_disasterimage">Disaster Image:</label>
+            <input type="file" name="disasterimage" id="id_disasterimage" accept="image/*">
+        
+            
+            <label for="id_affectedpeoples">Affected People:</label>
+            <input type="text" name="affectedpeoples" id="id_affectedpeoples" maxlength="50" value="{{ form.affectedpeoples.value|default:'' }}" required>
+        
+
+            <button type="submit">Submit Report</button>
+        </form>
+        
+
+    
+        <a href="{% url 'crisisreporting' %}" class="back-link"></a>
+    </div>
+
+</body>
+</html>

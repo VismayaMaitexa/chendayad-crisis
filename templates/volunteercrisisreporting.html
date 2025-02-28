@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crisis Reporting</title>
+    <style>
+        body, h1, label, input, select, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            color: #4CAF50;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            display: block;
+            color: #555;
+        }
+
+        input[type="text"], input[type="file"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            color: #555;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007BFF;
+            font-size: 1.1em;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Crisis Reporting</h1>
+
+    <div class="form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        
+            <label for="id_message">Message:</label>
+            <input type="text" name="message" id="id_message" maxlength="50" value="{{ form.message.value|default:'' }}" required>
+        
+            <label for="id_location">Location:</label>
+            <input type="text" name="location" id="id_location" maxlength="20" value="{{ form.location.value|default:'' }}" required>
+        
+            <label for="id_disasterimage">Disaster Image:</label>
+            <input type="file" name="disasterimage" id="id_disasterimage" accept="image/*">
+        
+            <label for="id_affectedpeoples">Affected People:</label>
+            <input type="text" name="affectedpeoples" id="id_affectedpeoples" maxlength="50" value="{{ form.affectedpeoples.value|default:'' }}" required>
+        
+            <button type="submit">Submit Report</button>
+        </form>
+        
+
+        <a href="{% url 'volunteercrisisreporting' %}" class="back-link">Go Back</a>
+    </div>
+
+</body>
+</html>

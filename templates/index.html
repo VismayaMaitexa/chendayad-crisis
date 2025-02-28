@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Conquer HTML5 Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="static/css/animate.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/templatemo_misc.css">
+    <link rel="stylesheet" href="static/css/templatemo_style.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="static/js/jquery-1.11.1.min.js"></script>
+    <script src="static/js/bootstrap-dropdown.js"></script>
+    <script src="static/js/bootstrap-collapse.js"></script>
+    <script src="static/js/bootstrap-tab.js"></script>
+    <script src="static/js/jquery.singlePageNav.js"></script>
+    <script src="static/js/jquery.flexslider.js"></script>
+    <script src="static/js/custom.js"></script>
+    <script src="static/js/jquery.lightbox.js"></script>
+    <script src="static/js/templatemo_custom.js"></script>
+    <script src="static/js/responsiveCarousel.min.js"></script>
+    <style>
+        /* Chatbot button styles */
+        #chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        #chatbot-button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #chatbot-button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        #chatbot-button i {
+            margin-right: 10px;
+        }
+
+        #chatbot-button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<div id="templatemo_home_page">
+    <div class="templatemo_topbar">
+        <div class="container">
+            <div class="row">
+                <div class="templatemo_titlewrapper"><img src="static/images/templatemo_logobg.png" alt="logo background">
+                    <div class="templatemo_title"><span>Crisis Connect</span></div>
+                </div>
+                <div class="clear"></div>
+                <div class="templatemo_titlewrappersmall">Crisis Connect</div>
+                <nav class="navbar navbar-default templatemo_menu" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div id="top-menu">
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li><a class="menu" href="#templatemo_home_page" style="font-size: 20px;">Home</a></li>
+                                    <li><a class="menu" href="{% url 'login' %}" style="font-size: 20px;">User</a></li>
+                                    <li><a class="menu" href="{% url 'volunteerregister' %}" style="font-size: 20px;">Volunteer</a></li>
+                                    <li><a class="menu" href="{% url 'admin_login' %}" style="font-size: 20px;">Admin</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="templatemo_headerimage">
+        <div class="flexslider">
+            <ul class="slides" style="list-style: none; padding: 0; margin: 0; position: relative; width: 100%; height: 100vh; overflow: hidden;">
+                <li style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                    <img src="static/images/slider/001.jpg" alt="Slide 1" style="width: 100%; height: 100%; object-fit: cover;">
+                </li>
+                <li style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                    <img src="static/images/slider/005.jpg" alt="Slide 2" style="width: 100%; height: 100%; object-fit: cover;">
+                </li>
+                <li style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                    <img src="static/images/slider/006.jpg" alt="Slide 3" style="width: 100%; height: 100%; object-fit: cover;">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="slider-caption">
+        <div class="templatemo_homewrapper"><br><br>
+            <p style="font-size: 40px;color:#ebedf0;"><b>"Stay Safe Stay Connected"</b></p><br><br><br><br>
+            <p style="font-size: 18px;text-transform: lowercase;">We stand united, hand in hand, and together we can overcome even the most daunting challenges, for in unity lies strength and hope. Let us help you tap into those inner resources and find a way forward.
+            </p>
+            <div class="templatemo_hometext"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section -->
+<div class="clear"></div>
+<div class="templatemo_servicewrapper" id="templatemo_service_page">
+    <div class="container">
+        <div class="row">
+            <h1>Services</h1>
+            <p style="font-size: 18px;">Your safety is our top priority. Stay safe, stay informed.</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
+                    <div class="templatemo_serviceicon"><span class="fa fa-cart-plus" aria-hidden="true">🍽</span></div>
+                    <div class="templatemo_service_title">"Feed the Need"</div>
+                    <p>Giving is not just about making a donation, it's about making a difference.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="templatemo_servicebox margin_bottom_1col margin_bottom_2col">
+                    <div class="templatemo_serviceicon"><span class="fa fa-home"></span></div>
+                    <div class="templatemo_service_title">"Emergency Shelter"</div>
+                    <p>The stories of refugees are not just stories of struggle, but stories of strength.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="templatemo_servicebox margin_bottom_1col">
+                    <div class="templatemo_serviceicon"><span class="fa fa-cart-plus" aria-hidden="true">🥼</span></div>
+                    <div class="templatemo_service_title">"Wrap Them in Love"</div>
+                    <p>Clothing is not just something we wear, it's a symbol of dignity and hope.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="templatemo_servicebox">
+                    <div class="templatemo_serviceicon"><span class="fa fa-cart-plus" aria-hidden="true">💉</span></div>
+                    <div class="templatemo_service_title">"Medical Support"</div>
+                    <p>Medical care is not just about treating the body, but also about nurturing the soul.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chatbot Button -->
+<div id="chatbot-container">
+ <a href="{% url 'chatbot' %}"> <button id="chatbot-button">
+        <i class="fa fa-comments"></i> Chat with us
+    </button></a>
+</div>
+
+</body>
+</html>

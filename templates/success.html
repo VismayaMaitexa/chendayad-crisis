@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            height: 100vh;
+            background: #f5f7fa;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 50px;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s ease;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-header h2 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .sidebar-menu li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .sidebar-menu li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .main-content {
+            margin-left: 250px;
+            flex-grow: 1;
+            background-color: #ecf0f1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .success-message {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .success-message h1 {
+            font-size: 32px;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .success-message a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .success-message a:hover {
+            background-color: #388e3c;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 0;
+                visibility: hidden;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>User Dashboard</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="{% url 'crisis' %}">Crisis</a></li>
+            <li><a href="{% url 'crisisreportinguser' %}">Crisis Reporting</a></li>
+            <li><a href="{% url 'resourcerequest' %}">Resource Request</a></li>
+            <li><a href="{% url 'home' %}">Log Out</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="success-message">
+            <h1>Success!</h1>
+            <p>Your action has been successfully completed.</p>
+            <a href="{% url 'home' %}" class="btn btn-primary">Go to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>

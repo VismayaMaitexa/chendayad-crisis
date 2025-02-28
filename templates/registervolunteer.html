@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .form-container {
+            max-width: 500px; /* Limiting the form width */
+            margin: 0 auto;   /* Centering the form */
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h2 class="text-center">Register</h2>
+            <form id="registerForm" method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Username -->
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                    <div id="usernameError" class="text-danger"></div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <div id="passwordError" class="text-danger"></div>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                    <div id="phoneError" class="text-danger"></div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <!-- Blood Group -->
+                <div class="form-group">
+                    <label for="bloodgroup">Blood Group:</label>
+                    <input type="text" class="form-control" id="bloodgroup" name="bloodgroup" required>
+                </div>
+
+                <!-- District -->
+                <div class="form-group">
+                    <label for="district">District:</label>
+                    <select class="form-control" id="district" name="district" required>
+                        <option value="" disabled selected>Select District</option>
+                        <option value="Kasargod">Kasargod</option>
+                        <option value="Kannur">Kannur</option>
+                        <option value="Wayanad">Wayanad</option>
+                        <option value="Kozhikode">Kozhikode</option>
+                        <option value="Malappuram">Malappuram</option>
+                        <option value="Palakkad">Palakkad</option>
+                        <option value="Thrissur">Thrissur</option>
+                        <option value="Eranakulam">Eranakulam</option>
+                        <option value="Idukki">Idukki</option>
+                        <option value="Kottayam">Kottayam</option>
+                        <option value="Alappuzha">Alappuzha</option>
+                        <option value="Pathanamthitta">Pathanamthitta</option>
+                        <option value="Kollam">Kollam</option>
+                        <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                    </select>
+                </div>
+
+                <!-- City -->
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" class="form-control" id="city" name="city" required>
+                </div>
+
+                <!-- Pincode -->
+                <div class="form-group">
+                    <label for="pincode">Pincode:</label>
+                    <input type="text" class="form-control" id="pincode" name="pincode" required>
+                </div>
+
+                <!-- Aadhar File Upload -->
+                <div class="form-group">
+                    <label for="aadhar_file">Upload Aadhar Card:</label>
+                    <input type="file" class="form-control" id="aadhar_file" name="aadhar_file">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            <p><a href="{% url 'volunteerlogin' %}">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS for Validation -->
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            let valid = true;
+            
+            // Validate password
+            const password = document.getElementById('password').value;
+            const passwordError = document.getElementById('passwordError');
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            passwordError.textContent = '';
+
+            if (!passwordRegex.test(password)) {
+                passwordError.textContent = 'Password must contain at least 8 characters, including an uppercase letter, a number, and a special character.';
+                valid = false;
+            }
+
+            // Validate phone number
+            const phone = document.getElementById('phone').value;
+            const phoneError = document.getElementById('phoneError');
+            phoneError.textContent = '';
+
+            if (phone.length !== 10 || isNaN(phone)) {
+                phoneError.textContent = 'Phone number must be 10 digits long.';
+                valid = false;
+            }
+
+            // If form is invalid, prevent submission
+            if (!valid) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approved Job Reports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .accept-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .reject-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        .accept-btn:hover {
+            background-color: #45a049;
+        }
+        .reject-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Job Reports</h2>
+
+    {% if applications %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Volunteer</th>
+                    <th>Location</th>
+                    <th>Message</th>
+                    <th>Vacancy</th>
+                    <th>Status</th>
+                    <!-- <th>Action</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for aps in applications %}
+
+                <!-- {% if report.status != 'rejected' %} -->
+                    <tr>
+                        <td>{{ aps.user.username }}</td>
+                        <td>{{ aps.job.location }}</td>
+                        <td>{{ aps.job.message }}</td>
+                        <td>{{ aps.job.vacancy }}</td>
+                        <td>{{ aps.job.status }}</td>
+                        <!-- <td> -->
+                            <!-- Accept Button -->
+                            <!-- <a style="text-decoration: none;" href="" class="action-btn accept-btn">{% if report.application_status == 'approved' %}Accepted {% else %}Accept {% endif %}</a> -->
+                            <!-- Reject Button -->
+                            <!-- <a style="text-decoration: none;" href="" class="action-btn reject-btn">Reject</a> -->
+                        <!-- </td> -->
+                    </tr>
+                    <!-- {% endif %} -->
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No approved job reports found.</p>
+    {% endif %}
+
+    <!-- <a href="" class="button">Add New Job Report</a> -->
+</div>
+
+</body>
+</html>

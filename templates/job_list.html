@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Listings</title>
+  {% block content %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      color: #333;
+      font-size: 2.5em;
+      margin: 0;
+    }
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .job-card {
+      background-color: #fcda74;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .job-card .content {
+      padding: 20px;
+    }
+    .job-card h3 {
+      font-size: 1.5em;
+      margin: 0 0 10px;
+      color: #333;
+    }
+    .job-card p {
+      font-size: 1em;
+      margin: 5px 0;
+      color: #555;
+    }
+    .job-card .status {
+      display: inline-block;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      color: #fff;
+      border-radius: 12px;
+      text-transform: capitalize;
+    }
+    .status.pending {
+      background-color: #f0ad4e;
+    }
+    .status.approved {
+      background-color: #5cb85c;
+    }
+    .status.rejected {
+      background-color: #d9534f;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #007bff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    @media (max-width: 600px) {
+      .job-card .content {
+        padding: 15px;
+      }
+      .job-card h3 {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Job Listings</h1>
+    </div>
+    <div class="jobs-grid">
+      {% for job in jobs %}
+      <div class="job-card">
+        <div class="content" style="text-transform: capitalize;">
+          <h3>{{ job.location }}</h3>
+          <p><strong>Message:</strong> {{ job.message }}</p>
+          <p><strong>Vacancy:</strong> {{ job.vacancy }}</p>
+          <a href="{% url 'admin_list_job_applications' job.id %}" class="btn">View Requests</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Font Awesome Icons -->
+
+    <style>
+        body, h1, h2, p, ul, li {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding-top: 20px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #34495e;
+        }
+
+        .main-content {
+            margin-left: 250px; /* Adjust this so content is not covered by the sidebar */
+            padding: 20px;
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            margin: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .delete-btn {
+            padding: 6px 12px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .delete-btn:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href=""><b>Dashboard</b></a></li>
+            <li><a href="{% url 'users' %}">Users</a></li>
+            <li><a href="{% url 'volunteers' %}">Volunteers</a></li>
+            <li><a href="{% url 'crisisreports' %}">Crisis Reports</a></li>
+            <li><a href="{% url 'jobs' %}">Job</a></li>
+            <li><a href="{% url 'donationrequest' %}">Resource Request</a></li>
+            <li><a href="{% url 'donationrequestvolunteer' %}">Donation Request</a></li>
+            <li><a href="{% url 'admindonate' %}">Donations</a></li>
+            <li><a href="{% url 'home' %}">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Volunteer Details List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Pincode</th>
+                    <th>District</th>
+                    <th>Aadhar File</th>
+                    <th>Actions</th> <!-- Added column for actions -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.city }}</td>
+                    <td>{{ user.pincode }}</td>
+                    <td>{{ user.district }}</td>
+                    <td>
+                        {% if user.aadhar_file %}
+                            <a href="{{ user.aadhar_file.url }}" target="_blank">View Aadhar File</a>
+                        {% else %}
+                            No file uploaded
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!-- Delete Button -->
+                        <form method="POST" action="{% url 'delete_volunteers' user.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div>
+            <a href="/volunteer/" class="btn">Add New User</a>  <!-- Add this link to add new users -->
+        </div>
+    </div>
+    
+</body>
+</html>
